@@ -31,9 +31,9 @@ Production-ready Django 4.x website for **schrodingercat.art** with a glassmorph
   - Plausible or Matomo hooks (configured via `.env`)
   - Custom tracking endpoint (`/api/track/`)
   - Client-side click/page/scroll tracking (`static/js/analytics.js`)
-  - Dedicated owner analytics panel:
-    - login: `/owner/login/`
-    - dashboard: `/owner/analytics/`
+  - Dedicated analytics service on port `8050` (separate container/app)
+  - HTTP Basic Auth on dashboard (`OWNER_DASH_USERNAME`/`OWNER_DASH_PASSWORD`)
+  - In production, dashboard binds to localhost by default (`DASHBOARD_BIND=127.0.0.1:8050:8050`)
   - Dashboard widgets:
     - page views trend
     - top clicked elements
@@ -101,6 +101,9 @@ Production-ready Django 4.x website for **schrodingercat.art** with a glassmorph
    docker compose exec web python manage.py loaddata core/fixtures/initial_data.json
    docker compose exec web python manage.py bootstrap_site
    ```
+5. Open services:
+   - Website: `http://localhost`
+   - Analytics dashboard (basic auth): `http://localhost:8050`
 
 Containers provided:
 - `web` (Django + Gunicorn)
@@ -122,6 +125,11 @@ Containers provided:
    ```cron
    0 3 * * * cd /path/to/repo && ./deploy/renew_certs.sh
    ```
+5. Access private analytics dashboard from your machine:
+   ```bash
+   ssh -L 8050:127.0.0.1:8050 root@<SERVER_IP>
+   ```
+   Then open `http://127.0.0.1:8050` and log in with `OWNER_DASH_USERNAME`/`OWNER_DASH_PASSWORD`.
 
 ## Environment Variables
 See `/Users/cristi/eugen-website/.env.example`.
@@ -135,7 +143,13 @@ Critical values:
 - `DJANGO_SECURE_SSL=True`
 - `CONTACT_EMAIL`
 - `PLAUSIBLE_DOMAIN` or `MATOMO_URL` + `MATOMO_SITE_ID`
+- `OWNER_DASH_USERNAME` and `OWNER_DASH_PASSWORD`
+- `DASHBOARD_BIND` (production default: `127.0.0.1:8050:8050`)
 - `FACEBOOK_PAGE_URL`, `INSTAGRAM_PROFILE_URL`, and optional `INSTAGRAM_EMBEDS`
+
+## Admin Access Policy
+- Django admin route is intentionally not exposed.
+- Use the dedicated analytics dashboard for private statistics access.
 
 ## API Documentation
 Detailed endpoint docs: `/Users/cristi/eugen-website/docs/API.md`

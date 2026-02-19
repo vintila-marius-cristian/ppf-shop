@@ -47,7 +47,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8050:8050"
+      - "${DASHBOARD_BIND:-127.0.0.1:8050:8050}"
 
   nginx:
     image: nginx:1.27-alpine

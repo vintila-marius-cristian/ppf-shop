@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
 
 from .models import ContactMessage
 
@@ -34,14 +33,3 @@ class ContactForm(forms.ModelForm):
         if len(value) < 15:
             raise forms.ValidationError("Mesajul trebuie sa contina minim 15 caractere.")
         return value
-
-
-class OwnerLoginForm(AuthenticationForm):
-    username = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Username"}),
-        label="Utilizator",
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Parola"}),
-        label="Parola",
-    )

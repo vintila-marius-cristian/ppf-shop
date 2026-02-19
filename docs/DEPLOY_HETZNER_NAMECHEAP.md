@@ -61,6 +61,9 @@ Edit `.env` (must set):
 - `CSRF_TRUSTED_ORIGINS=https://schrodingercat.art,https://www.schrodingercat.art`
 - `SITE_URL=https://schrodingercat.art`
 - `DJANGO_SECURE_SSL=True`
+- `OWNER_DASH_USERNAME=<your-dashboard-username>`
+- `OWNER_DASH_PASSWORD=<strong-dashboard-password>`
+- `DASHBOARD_BIND=127.0.0.1:8050:8050` (keeps analytics private on server localhost)
 
 ## 4) Start production stack
 ```bash
@@ -83,8 +86,18 @@ docker compose -f docker-compose.prod.yml exec web python manage.py bootstrap_si
 ## 7) Verify
 - https://schrodingercat.art
 - https://www.schrodingercat.art
-- https://schrodingercat.art/owner/login/
-- https://schrodingercat.art/owner/analytics/ (requires owner account with staff rights)
+- Django admin is intentionally not exposed (`/admin/` should return 404).
+
+Access analytics dashboard (private, separate app):
+1. From your local machine, open an SSH tunnel:
+   ```bash
+   ssh -L 8050:127.0.0.1:8050 root@<YOUR_HETZNER_SERVER_IP>
+   ```
+2. Open:
+   - http://127.0.0.1:8050
+3. Authenticate with:
+   - `OWNER_DASH_USERNAME`
+   - `OWNER_DASH_PASSWORD`
 
 ## 8) Enable automatic cert renewal
 ```bash
