@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ service.seo_title|default:service.name }} | Premiere Aesthetics{% endblock %}
+{% block meta_description %}{{ service.seo_description|default:service.short_description|default:service.description|truncatewords:30 }}{% endblock %}
+
+{% block content %}
+<section class="container py-5 mt-5">
+  <div class="glass-card p-4 p-lg-5">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <p class="caps">{{ service.get_category_display }}</p>
+        <h1>{{ service.name }}</h1>
+        <p>{{ service.description }}</p>
+        {% if service.price_range %}<p><strong>Pachet orientativ:</strong> {{ service.price_range }}</p>{% endif %}
+        <a class="btn btn-primary" href="{% url 'core:contact' %}" data-track-event="cta_click" data-track-element="service_contact_{{ service.slug }}">Programeaza consultatie</a>
+      </div>
+      <div class="col-lg-6">
+        {% if service.video %}
+          <video controls class="w-100 rounded-4" poster="{{ MEDIA_URL }}client/image-1.jpeg">
+            <source src="{{ service.video.url }}" type="video/mp4" />
+          </video>
+        {% elif service.image %}
+          <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-100 rounded-4" />
+        {% else %}
+          <img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="{{ service.name }}" class="w-100 rounded-4" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-4">
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <article class="glass-card p-4">
+        <h2 class="h4">Ce include serviciul</h2>
+        <ul>
+          <li>Inspectie initiala a suprafetei si recomandari personalizate.</li>
+          <li>Pregatire profesionala in zona controlata, fara contaminanti.</li>
+          <li>Aplicare cu materiale premium si control strict al calitatii.</li>
+          <li>Instructiuni complete de intretinere post-aplicare.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="col-lg-5">
+      <article class="glass-card p-4">
+        <h2 class="h4">FAQ</h2>
+        {% for faq in faqs %}
+          <details class="faq-item">
+            <summary>{{ faq.q }}</summary>
+            <p>{{ faq.a }}</p>
+          </details>
+        {% empty %}
+          <p>Contacteaza echipa pentru intrebari tehnice specifice modelului tau auto.</p>
+        {% endfor %}
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="container pb-5">
+  <div class="section-head">
+    <h2>Media din lucrari similare</h2>
+  </div>
+  <div class="grid-gallery">
+    {% for item in related_media %}
+      {% include 'partials/_gallery_card.html' with item=item %}
+    {% empty %}
+      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-2.jpeg" alt="{{ service.name }}" class="card-media" /></figure>
+      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ service.name }}" class="card-media" /></figure>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

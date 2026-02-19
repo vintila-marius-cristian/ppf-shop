@@ -1,0 +1,14 @@
+<div class="testimonial-slider" data-slider>
+  {% for testimonial in testimonials %}
+    <article class="glass-card testimonial-slide{% if forloop.first %} active{% endif %}">
+      <p class="stars" aria-label="{{ testimonial.rating }} stele">{% for i in '12345' %}{% if forloop.counter <= testimonial.rating %}★{% else %}☆{% endif %}{% endfor %}</p>
+      <blockquote>“{{ testimonial.comment }}”</blockquote>
+      <p class="mb-0"><strong>{{ testimonial.author }}</strong> · {{ testimonial.source }}</p>
+    </article>
+  {% empty %}
+    <article class="glass-card testimonial-slide active">
+      <blockquote>“Rezultatele vorbesc de la sine. Echipa trateaza fiecare masina ca pe un proiect premium.”</blockquote>
+      <p class="mb-0"><strong>Client Premiere</strong></p>
+    </article>
+  {% endfor %}
+</div>

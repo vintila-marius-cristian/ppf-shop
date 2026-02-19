@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Galerie Proiecte Auto | Premiere Aesthetics{% endblock %}
+{% block meta_description %}Galerie foto-video cu lucrari PPF, ceramic coating, tint si detailing realizate in atelierul nostru din Pitesti.{% endblock %}
+
+{% block content %}
+<section class="container py-5 mt-5">
+  <div class="section-head">
+    <p class="caps">Galerie</p>
+    <h1>Proiecte reale din atelier</h1>
+  </div>
+
+  <form method="get" class="glass-card p-3 mb-4 d-flex flex-wrap gap-2 align-items-center">
+    <label for="serviceFilter" class="mb-0">Filtru serviciu:</label>
+    <select id="serviceFilter" name="service" class="form-select w-auto" onchange="this.form.submit()">
+      <option value="">Toate</option>
+      {% for service in services %}
+        <option value="{{ service.slug }}" {% if active_service == service.slug %}selected{% endif %}>{{ service.name }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <div class="grid-gallery">
+    {% for item in gallery_items %}
+      {% include 'partials/_gallery_card.html' with item=item %}
+    {% empty %}
+      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="Galerie Premiere Aesthetics" class="card-media" /></figure>
+      <figure class="glass-card gallery-card"><video controls class="card-media"><source src="{{ MEDIA_URL }}client/video-2.mp4" type="video/mp4" /></video></figure>
+    {% endfor %}
+  </div>
+
+</section>
+{% endblock %}

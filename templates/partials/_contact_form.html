@@ -1,0 +1,36 @@
+<form method="post" id="contactForm" class="glass-card p-4">
+  {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label" for="id_name">Nume</label>
+      {{ form.name }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="id_email">Email</label>
+      {{ form.email }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="id_phone">Telefon</label>
+      {{ form.phone }}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="id_subject">Subiect</label>
+      {{ form.subject }}
+    </div>
+    <div class="col-12">
+      <label class="form-label" for="id_message">Mesaj</label>
+      {{ form.message }}
+    </div>
+    <div class="col-12 d-none">{{ form.company }}</div>
+    <div class="col-12">
+      <div class="form-check">
+        {{ form.consent }}
+        <label class="form-check-label" for="id_consent">Sunt de acord cu procesarea datelor pentru a primi raspuns.</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit" data-track-event="contact_form_submit" data-track-element="contact_form">Trimite mesajul</button>
+      <p class="small mt-2 mb-0 text-secondary">Prin trimitere, accepti ca furnizorii social embed pot seta cookie-uri third-party.</p>
+    </div>
+  </div>
+</form>

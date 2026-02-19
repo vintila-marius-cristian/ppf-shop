@@ -1,0 +1,48 @@
+name: Django CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: premiereaesthetics
+          POSTGRES_USER: premiere
+          POSTGRES_PASSWORD: premierepass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U premiere -d premiereaesthetics"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      SECRET_KEY: test-key
+      DEBUG: False
+      DATABASE_URL: postgresql://premiere:premierepass@127.0.0.1:5432/premiereaesthetics
+      ALLOWED_HOSTS: localhost,127.0.0.1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run migrations
+        run: python manage.py migrate --noinput
+
+      - name: Run tests
+        run: python manage.py test

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Testimoniale Clienti | Premiere Aesthetics{% endblock %}
+{% block meta_description %}Vezi recenzii reale ale clientilor pentru serviciile noastre premium de protectie si detailing auto.{% endblock %}
+
+{% block content %}
+<section class="container py-5 mt-5">
+  <div class="section-head">
+    <p class="caps">Testimoniale</p>
+    <h1>Feedback de la proprietari auto</h1>
+  </div>
+  <div class="grid-cards">
+    {% for testimonial in testimonials %}
+      <article class="glass-card p-4">
+        <p class="stars">{% for i in '12345' %}{% if forloop.counter <= testimonial.rating %}★{% else %}☆{% endif %}{% endfor %}</p>
+        <blockquote class="mb-3">“{{ testimonial.comment }}”</blockquote>
+        <p class="mb-0"><strong>{{ testimonial.author }}</strong> · {{ testimonial.source }} · {{ testimonial.date|date:"d M Y" }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

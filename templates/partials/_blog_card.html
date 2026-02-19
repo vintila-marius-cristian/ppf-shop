@@ -1,0 +1,13 @@
+<article class="glass-card blog-card" data-track-event="blog_card_click" data-track-element="blog:{{ post.slug }}">
+  {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="card-media" loading="lazy" />
+  {% else %}
+    <img src="{{ MEDIA_URL }}client/image-4.jpeg" alt="{{ post.title }}" class="card-media" loading="lazy" />
+  {% endif %}
+  <div class="card-body">
+    <p class="caps">{{ post.published_at|date:"d M Y" }} · {{ post.reading_time_minutes }} min</p>
+    <h3 class="h5">{{ post.title }}</h3>
+    <p>{{ post.summary|truncatewords:26 }}</p>
+    <a class="btn btn-outline-light btn-sm" href="{{ post.get_absolute_url }}">Citeste articol</a>
+  </div>
+</article>

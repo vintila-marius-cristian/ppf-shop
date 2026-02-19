@@ -1,0 +1,23 @@
+<footer class="site-footer glass-card mt-5">
+  <div class="container py-4 d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-start">
+    <div>
+      <h3 class="h5 mb-1">{{ business.name }}</h3>
+      <p class="mb-0">{{ business.street }}, {{ business.city }}</p>
+      <p class="mb-0"><a href="tel:{{ business.phone }}">{{ business.phone }}</a> · <a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
+    </div>
+    <div>
+      <p class="mb-1">Program: {{ business.hours }}</p>
+      <p class="mb-0"><a href="{% url 'core:privacy' %}">Politica de confidentialitate</a></p>
+    </div>
+    {% if request.user.is_authenticated and request.user.is_staff %}
+      <div>
+        <a class="btn btn-sm btn-outline-light" href="{% url 'core:analytics_dashboard' %}">Dashboard Analytics</a>
+      </div>
+    {% else %}
+      <div>
+        <a class="btn btn-sm btn-outline-light" href="{% url 'core:owner_login' %}">Owner Analytics Login</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="container pb-3 small text-secondary">© {{ current_year }} {{ business.name }}. Toate drepturile rezervate.</div>
+</footer>

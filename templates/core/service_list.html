@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Servicii PPF, Ceramic, Tint, Detailing | Premiere Aesthetics{% endblock %}
+{% block meta_description %}Descopera pachetele noastre de PPF, ceramic coating, folie geamuri si detailing in Pitesti.{% endblock %}
+
+{% block content %}
+<section class="container py-5 mt-5">
+  <div class="section-head">
+    <p class="caps">Portofoliu servicii</p>
+    <h1>Servicii premium pentru protectie si estetica auto</h1>
+  </div>
+  <div class="grid-cards">
+    {% for service in services %}
+      {% include 'partials/_service_card.html' with service=service %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

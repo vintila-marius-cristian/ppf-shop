@@ -1,0 +1,248 @@
+[
+  {
+    "model": "core.service",
+    "pk": 1,
+    "fields": {
+      "name": "Paint Protection Film",
+      "slug": "ppf",
+      "short_description": "Protectie invizibila premium impotriva zgarieturilor si loviturilor de pietre.",
+      "description": "Aplicam folie PPF premium pe zone partiale sau caroserie completa, cu finisaj optic clar, auto-regenerare la micro-zgarieturi si protectie UV.",
+      "image": "client/image-1.jpeg",
+      "video": "client/video-1.mp4",
+      "price_range": "de la 450 EUR",
+      "category": "ppf",
+      "is_featured": true,
+      "display_order": 1,
+      "seo_title": "PPF Pitesti | Protectie Premium Vopsea",
+      "seo_description": "Montaj PPF in Pitesti pentru protectie avansata impotriva impactului, zgarieturilor si contaminarii.",
+      "created_at": "2026-02-19T17:00:00Z",
+      "updated_at": "2026-02-19T17:00:00Z"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 2,
+    "fields": {
+      "name": "Ceramic Coating",
+      "slug": "ceramic-coating",
+      "short_description": "Luciu profund si efect hidrofob pentru intretinere simplificata.",
+      "description": "Aplicare coating ceramic pe caroserie, jante si suprafete sensibile, cu pachete de durabilitate intre 2 si 5 ani.",
+      "image": "client/image-2.jpeg",
+      "video": "client/video-2.mp4",
+      "price_range": "de la 300 EUR",
+      "category": "ceramic",
+      "is_featured": true,
+      "display_order": 2,
+      "seo_title": "Ceramic Coating Pitesti | Protectie si luciu",
+      "seo_description": "Tratament ceramic profesional pentru masini premium in Pitesti.",
+      "created_at": "2026-02-19T17:05:00Z",
+      "updated_at": "2026-02-19T17:05:00Z"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 3,
+    "fields": {
+      "name": "Window Tinting",
+      "slug": "window-tinting",
+      "short_description": "Confort termic si protectie UV cu folii omologate.",
+      "description": "Montaj folie geamuri auto cu reducerea radiatiei UV si a caldurii interioare, respectand standardele de omologare.",
+      "image": "client/image-3.jpeg",
+      "video": "client/video-3.mp4",
+      "price_range": "de la 180 EUR",
+      "category": "tint",
+      "is_featured": true,
+      "display_order": 3,
+      "seo_title": "Folie Geamuri Auto Pitesti | Window Tinting",
+      "seo_description": "Window tinting premium in Pitesti, cu folii performante si montaj profesionist.",
+      "created_at": "2026-02-19T17:10:00Z",
+      "updated_at": "2026-02-19T17:10:00Z"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 4,
+    "fields": {
+      "name": "Detailing Complet",
+      "slug": "detailing",
+      "short_description": "Corectie de lac, curatare profunda si finisaj de showroom.",
+      "description": "Serviciu complet de detailing interior si exterior pentru refacerea estetica a vehiculului si protectie pe termen lung.",
+      "image": "client/image-4.jpeg",
+      "price_range": "de la 250 EUR",
+      "category": "detailing",
+      "is_featured": true,
+      "display_order": 4,
+      "seo_title": "Auto Detailing Pitesti | Premiere Aesthetics",
+      "seo_description": "Detailing interior-exterior profesional in Pitesti pentru masini premium.",
+      "created_at": "2026-02-19T17:15:00Z",
+      "updated_at": "2026-02-19T17:15:00Z"
+    }
+  },
+  {
+    "model": "core.galleryitem",
+    "pk": 1,
+    "fields": {
+      "title": "PPF Full Front",
+      "image": "client/image-5.jpeg",
+      "related_service": 1,
+      "description": "Protectie completa pentru zona frontala.",
+      "caption": "Sedan premium - pachet front complet",
+      "is_featured": true,
+      "sort_order": 1,
+      "created_at": "2026-02-19T20:00:00Z"
+    }
+  },
+  {
+    "model": "core.galleryitem",
+    "pk": 2,
+    "fields": {
+      "title": "Coating ceramic",
+      "image": "client/image-6.jpeg",
+      "related_service": 2,
+      "description": "Finisaj lucios dupa corectie usoara.",
+      "caption": "SUV premium cu protectie ceramic",
+      "is_featured": true,
+      "sort_order": 2,
+      "created_at": "2026-02-19T20:05:00Z"
+    }
+  },
+  {
+    "model": "core.galleryitem",
+    "pk": 3,
+    "fields": {
+      "title": "Window tint showcase",
+      "video": "client/video-2.mp4",
+      "related_service": 3,
+      "description": "Demonstratie montaj folie geamuri.",
+      "caption": "Video demonstrativ - tint premium",
+      "is_featured": true,
+      "sort_order": 3,
+      "created_at": "2026-02-19T20:10:00Z"
+    }
+  },
+  {
+    "model": "core.galleryitem",
+    "pk": 4,
+    "fields": {
+      "title": "Detailing interior",
+      "image": "client/image-7.jpeg",
+      "related_service": 4,
+      "description": "Curatare detaliata interior.",
+      "caption": "Interior premium detailing",
+      "is_featured": true,
+      "sort_order": 4,
+      "created_at": "2026-02-19T20:15:00Z"
+    }
+  },
+  {
+    "model": "core.blogcategory",
+    "pk": 1,
+    "fields": {
+      "name": "PPF",
+      "slug": "ppf"
+    }
+  },
+  {
+    "model": "core.blogcategory",
+    "pk": 2,
+    "fields": {
+      "name": "Detailing",
+      "slug": "detailing"
+    }
+  },
+  {
+    "model": "core.blogtag",
+    "pk": 1,
+    "fields": {
+      "name": "pitesti",
+      "slug": "pitesti"
+    }
+  },
+  {
+    "model": "core.blogtag",
+    "pk": 2,
+    "fields": {
+      "name": "protectie auto",
+      "slug": "protectie-auto"
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Cum alegi corect PPF pentru masina ta in Pitesti",
+      "slug": "cum-alegi-corect-ppf",
+      "author": "Echipa Premiere Aesthetics",
+      "content": "PPF este una dintre cele mai eficiente solutii de protectie pentru vopsea. In traficul urban, pietrele, praful abraziv si spalatoriile nepotrivite pot degrada rapid finisajul. In acest ghid explicam cum alegi tipul de folie in functie de buget, expunere si tipul de utilizare.",
+      "summary": "Ghid practic pentru alegerea foliei PPF in functie de utilizare si buget.",
+      "featured_image": "client/image-1.jpeg",
+      "categories": [1],
+      "tags": [1, 2],
+      "published_at": "2026-02-19T18:00:00Z",
+      "is_published": true,
+      "seo_title": "Cum alegi corect PPF in Pitesti",
+      "seo_description": "Afla ce trebuie sa verifici cand alegi PPF pentru protectia masinii tale.",
+      "created_at": "2026-02-19T18:00:00Z",
+      "updated_at": "2026-02-19T18:00:00Z"
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "Ceramic coating vs. sealant: ce alegi pentru masina ta",
+      "slug": "ceramic-coating-vs-sealant",
+      "author": "Echipa Premiere Aesthetics",
+      "content": "Ceramic coating ofera durabilitate si rezistenta chimica mai buna fata de sealant-ul clasic. In functie de stilul de utilizare si obiectivele tale, poti alege pachetul optim.",
+      "summary": "Comparam avantajele ceramic coating-ului fata de sealant-ul traditional.",
+      "featured_image": "client/image-2.jpeg",
+      "categories": [2],
+      "tags": [1],
+      "published_at": "2026-02-18T18:00:00Z",
+      "is_published": true,
+      "seo_title": "Ceramic Coating vs Sealant",
+      "seo_description": "Comparatie clara intre ceramic coating si sealant pentru protectia caroseriei.",
+      "created_at": "2026-02-18T18:00:00Z",
+      "updated_at": "2026-02-18T18:00:00Z"
+    }
+  },
+  {
+    "model": "core.testimonial",
+    "pk": 1,
+    "fields": {
+      "author": "Andrei M.",
+      "rating": 5,
+      "comment": "Aplicare impecabila PPF, masina arata perfect si dupa luni de utilizare.",
+      "date": "2026-02-10",
+      "source": "Google",
+      "is_featured": true,
+      "created_at": "2026-02-10T12:00:00Z"
+    }
+  },
+  {
+    "model": "core.testimonial",
+    "pk": 2,
+    "fields": {
+      "author": "Cristina V.",
+      "rating": 5,
+      "comment": "Coating ceramic aplicat profesionist. Diferenta se vede imediat.",
+      "date": "2026-02-12",
+      "source": "Facebook",
+      "is_featured": true,
+      "created_at": "2026-02-12T12:00:00Z"
+    }
+  },
+  {
+    "model": "core.testimonial",
+    "pk": 3,
+    "fields": {
+      "author": "Mihai P.",
+      "rating": 5,
+      "comment": "Echipa profesionista, comunicare excelenta si rezultat premium.",
+      "date": "2026-02-15",
+      "source": "Instagram",
+      "is_featured": true,
+      "created_at": "2026-02-15T12:00:00Z"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+<figure class="glass-card gallery-card" data-track-event="gallery_item_click" data-track-element="gallery:{{ item.id }}">
+  {% if item.video %}
+    <video preload="metadata" class="card-media" loading="lazy" muted playsinline>
+      <source src="{{ item.video.url }}" type="video/mp4" />
+      Browserul tau nu suporta video.
+    </video>
+  {% elif item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-media" loading="lazy" />
+  {% else %}
+    <img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ item.title }}" class="card-media" loading="lazy" />
+  {% endif %}
+  <figcaption class="card-body">
+    <h3 class="h6 mb-1">{{ item.title }}</h3>
+    <p class="mb-0">{{ item.caption|default:item.description|truncatewords:18 }}</p>
+    <button
+      type="button"
+      class="btn btn-outline-light btn-sm mt-3"
+      data-gallery-open
+      data-gallery-type="{% if item.video %}video{% else %}image{% endif %}"
+      data-gallery-src="{% if item.video %}{{ item.video.url }}{% elif item.image %}{{ item.image.url }}{% else %}{{ MEDIA_URL }}client/image-3.jpeg{% endif %}"
+      data-gallery-title="{{ item.title|escape }}"
+      data-gallery-caption="{{ item.caption|default:item.description|escape }}">
+      Vezi proiectul full
+    </button>
+  </figcaption>
+</figure>

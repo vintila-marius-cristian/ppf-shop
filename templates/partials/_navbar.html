@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg fixed-top glass-nav">
+  <div class="container">
+    <a class="navbar-brand brand-mark" href="{% url 'core:home' %}">Premiere Aesthetics</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:service_list' %}">Servicii</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:gallery' %}">Galerie</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:about' %}">Despre</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:blog_list' %}">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:testimonials' %}">Testimoniale</a></li>
+        <li class="nav-item"><a class="nav-link nav-cta" href="{% url 'core:contact' %}">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
