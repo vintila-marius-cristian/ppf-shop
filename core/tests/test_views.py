@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 from core.models import BlogPost, Service
-from django.contrib.auth import get_user_model
 
 
 class ViewTests(TestCase):
@@ -45,25 +44,6 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sitemap")
 
-    def test_analytics_dashboard_requires_login(self):
-        response = self.client.get(reverse("core:analytics_dashboard"))
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(response.url.startswith(reverse("core:owner_login")))
-
-    def test_analytics_dashboard_forbidden_for_non_staff(self):
-        user_model = get_user_model()
-        user = user_model.objects.create_user(username="normal", email="normal@example.com", password="test-pass-123")
-        self.client.force_login(user)
-        response = self.client.get(reverse("core:analytics_dashboard"))
-        self.assertEqual(response.status_code, 403)
-
-    def test_analytics_dashboard_access_for_staff(self):
-        user_model = get_user_model()
-        admin_user = user_model.objects.create_superuser(username="admin", email="admin@example.com", password="test-pass-123")
-        self.client.force_login(admin_user)
-        response = self.client.get(reverse("core:analytics_dashboard"))
-        self.assertEqual(response.status_code, 200)
-
-    def test_owner_login_page_loads(self):
-        response = self.client.get(reverse("core:owner_login"))
-        self.assertEqual(response.status_code, 200)
+    def test_django_admin_not_exposed(self):
+        response = self.client.get("/admin/")
+        self.assertEqual(response.status_code, 404)

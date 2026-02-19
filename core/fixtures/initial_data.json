@@ -173,8 +173,8 @@
       "title": "Cum alegi corect PPF pentru masina ta in Pitesti",
       "slug": "cum-alegi-corect-ppf",
       "author": "Echipa Premiere Aesthetics",
-      "content": "PPF este una dintre cele mai eficiente solutii de protectie pentru vopsea. In traficul urban, pietrele, praful abraziv si spalatoriile nepotrivite pot degrada rapid finisajul. In acest ghid explicam cum alegi tipul de folie in functie de buget, expunere si tipul de utilizare.",
-      "summary": "Ghid practic pentru alegerea foliei PPF in functie de utilizare si buget.",
+      "content": "SECTIUNEA 1 - Analiza masinii inainte de montaj\\nPrimul pas este inspectia completa a caroseriei in lumina rece, pentru a identifica zgarieturi fine, zone revopsite si eventuale defecte de lac. Daca suprafata are contaminanti, decontaminarea si o corectie usoara sunt obligatorii inainte de aplicarea foliei. Fara aceasta etapa, folia poate sigila imperfectiuni care vor ramane vizibile in timp. O pregatire corecta reduce riscul de margini ridicate si creste durata de viata a montajului. In atelierul nostru documentam fiecare panou si discutam transparent ce este necesar inainte de montaj.\\n\\nSECTIUNEA 2 - Alegerea tipului de folie PPF\\nNu toate foliile PPF ofera acelasi nivel de claritate, elasticitate sau rezistenta la pete. Pentru utilizare urbana intensa recomandam o folie cu self-healing rapid si protectie UV stabila pe termen lung. Pentru masini expuse frecvent la drum lung, are sens sa cresti acoperirea pe zonele cu impact ridicat, precum bara, capota si oglinzile. Diferenta dintre un pachet partial si unul complet trebuie evaluata in functie de stilul tau de condus si de nivelul estetic dorit. O selectie buna inseamna mai putine interventii cosmetice pe termen mediu.\\n\\nSECTIUNEA 3 - Buget, garantie si mentenanta\\nCostul final trebuie evaluat impreuna cu garantia materialului si experienta echipei de montaj. Un pret aparent mai mic poate ascunde folii cu rezistenta slaba la pete sau ingalbenire prematura. Dupa montaj, spalarea manuala si produsele cu pH neutru ajuta la mentinerea claritatii foliei. Verificarea periodica a muchiilor si a zonelor critice previne degradarea in timp. Cu o mentenanta corecta, PPF-ul ramane o investitie predictibila si eficienta.",
+      "summary": "Ghid complet pentru alegerea foliei PPF: evaluare initiala, selectie material, estimare de cost si reguli de mentenanta.",
       "featured_image": "client/image-1.jpeg",
       "categories": [1],
       "tags": [1, 2],
@@ -193,8 +193,8 @@
       "title": "Ceramic coating vs. sealant: ce alegi pentru masina ta",
       "slug": "ceramic-coating-vs-sealant",
       "author": "Echipa Premiere Aesthetics",
-      "content": "Ceramic coating ofera durabilitate si rezistenta chimica mai buna fata de sealant-ul clasic. In functie de stilul de utilizare si obiectivele tale, poti alege pachetul optim.",
-      "summary": "Comparam avantajele ceramic coating-ului fata de sealant-ul traditional.",
+      "content": "SECTIUNEA 1 - Diferenta de protectie in utilizarea zilnica\\nSealant-ul clasic ofera un luciu bun pe termen scurt si un efect hidrofob decent, dar performanta lui scade mai rapid in conditii dure. Coating-ul ceramic creeaza un strat mai rezistent la chimicale usoare, oxidare si contaminare urbana. In trafic aglomerat, unde masina este expusa la praf abraziv si spalari dese, aceasta diferenta devine evidenta dupa primele luni. Coating-ul nu elimina necesitatea spalarii, dar reduce aderenta murdariei si usureaza intretinerea. Practic, economisesti timp la fiecare spalare si mentii mai usor un aspect premium.\\n\\nSECTIUNEA 2 - Durata, cost si predictibilitate\\nSealant-ul este mai accesibil initial, dar necesita reaplicari periodice pentru a mentine protectia. Coating-ul are un cost initial mai mare, insa durata de exploatare este considerabil mai buna atunci cand este intretinut corect. Daca analizezi costul pe 2-3 ani, diferenta se echilibreaza in multe cazuri. O alegere buna depinde de cat timp vrei sa pastrezi masina si de cat de mult conteaza consistenta aspectului. Important este sa compari pachete care includ pregatirea suprafetei, nu doar aplicarea produsului.\\n\\nSECTIUNEA 3 - Cand merita combinatia cu PPF\\nPentru panourile cu risc ridicat de impact, PPF ramane prima linie de aparare impotriva ciupiturilor si zgarieturilor. Coating-ul ceramic poate fi aplicat peste zonele protejate pentru hidrofobie suplimentara si curatare mai usoara. Aceasta combinatie este utila mai ales pe masini noi sau recent reconditionate, unde vrei sa conservi finisajul cat mai mult. Strategia corecta este sa definesti zonele critice pentru PPF, apoi sa completezi restul suprafetelor cu coating. Rezultatul este un pachet echilibrat intre protectie mecanica si intretinere simplificata.",
+      "summary": "Comparatie practica intre coating ceramic si sealant: protectie reala, durata, cost total si scenarii in care merita fiecare varianta.",
       "featured_image": "client/image-2.jpeg",
       "categories": [2],
       "tags": [1],
@@ -204,6 +204,26 @@
       "seo_description": "Comparatie clara intre ceramic coating si sealant pentru protectia caroseriei.",
       "created_at": "2026-02-18T18:00:00Z",
       "updated_at": "2026-02-18T18:00:00Z"
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 3,
+    "fields": {
+      "title": "Plan de intretinere dupa PPF si coating: primele 90 de zile",
+      "slug": "plan-intretinere-ppf-coating-90-zile",
+      "author": "Echipa Premiere Aesthetics",
+      "content": "SECTIUNEA 1 - Primele 7 zile dupa aplicare\\nIn prima saptamana evita spalarea agresiva si nu folosi jetul foarte aproape de muchiile foliei. Adezivul are nevoie de timp pentru stabilizare, iar interventiile premature pot afecta aderenta. Este normal sa observi mici urme de umiditate in anumite zone, acestea dispar pe masura ce materialul se stabilizeaza. Parcarea in zone curate si evitarea contaminarii intense ajuta mult in aceasta etapa. Daca apar intrebari, un control rapid in atelier previne corectii costisitoare mai tarziu.\\n\\nSECTIUNEA 2 - Rutina de spalare intre 2 si 6 saptamani\\nSpalarea manuala cu manusa moale si sampon pH neutru este cea mai sigura varianta pentru PPF si coating. Evita periile dure si produsele foarte alcaline, deoarece pot reduce performanta hidrofoba in timp. Clatirea corecta si uscarea cu prosop de microfibra curat limiteaza aparitia petelor minerale. Pentru jante si zone foarte murdare foloseste solutii dedicate, testate pe suprafete protejate. O rutina constanta este mai eficienta decat interventii rare, dar agresive.\\n\\nSECTIUNEA 3 - Verificari lunare si corectii preventive\\nLa fiecare 30 de zile verifica vizual muchiile foliei, capota, bara si oglinzile, unde uzura este de obicei mai mare. Daca observi depuneri persistente, indeparteaza-le cu produse sigure pentru PPF, nu cu abrazivi. Un refresh hidrofob aplicat la intervale regulate mentine comportamentul de respingere a apei. In cazul masinilor folosite zilnic pe drumuri aglomerate, o inspectie profesionala trimestriala este recomandata. Prevenirea este intotdeauna mai ieftina decat refacerea unor panouri deteriorate.",
+      "summary": "Plan simplu, pe etape, pentru intretinerea masinii dupa aplicarea PPF si ceramic coating, cu reguli clare pentru spalare si verificari periodice.",
+      "featured_image": "client/image-3.jpeg",
+      "categories": [1, 2],
+      "tags": [1, 2],
+      "published_at": "2026-02-17T18:00:00Z",
+      "is_published": true,
+      "seo_title": "Intretinere PPF si coating in primele 90 de zile",
+      "seo_description": "Ghid practic de intretinere pentru PPF si ceramic coating, cu pasi clari pentru primele 90 de zile.",
+      "created_at": "2026-02-17T18:00:00Z",
+      "updated_at": "2026-02-17T18:00:00Z"
     }
   },
   {

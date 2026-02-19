@@ -46,6 +46,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    ports:
+      - "8050:8050"
 
   nginx:
     image: nginx:1.27-alpine

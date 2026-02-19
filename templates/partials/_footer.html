@@ -9,15 +9,6 @@
       <p class="mb-1">Program: {{ business.hours }}</p>
       <p class="mb-0"><a href="{% url 'core:privacy' %}">Politica de confidentialitate</a></p>
     </div>
-    {% if request.user.is_authenticated and request.user.is_staff %}
-      <div>
-        <a class="btn btn-sm btn-outline-light" href="{% url 'core:analytics_dashboard' %}">Dashboard Analytics</a>
-      </div>
-    {% else %}
-      <div>
-        <a class="btn btn-sm btn-outline-light" href="{% url 'core:owner_login' %}">Owner Analytics Login</a>
-      </div>
-    {% endif %}
   </div>
   <div class="container pb-3 small text-secondary">© {{ current_year }} {{ business.name }}. Toate drepturile rezervate.</div>
 </footer>

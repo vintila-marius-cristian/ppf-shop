@@ -1,14 +1,9 @@
-import json
 from typing import Any
 
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.db.models import Count
-from django.db.models.functions import TruncDate
-from django.http import HttpRequest, HttpResponse, HttpResponseForbidden, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.decorators.http import require_GET
@@ -17,7 +12,7 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .forms import ContactForm, OwnerLoginForm
+from .forms import ContactForm
 from .models import BlogPost, Event, GalleryItem, Service, Testimonial
 from .serializers import BlogPostSerializer, ContactSerializer, EventSerializer
 
@@ -159,95 +154,12 @@ class TestimonialListView(ListView):
     queryset = Testimonial.objects.all()
 
 
-class OwnerLoginView(LoginView):
-    template_name = "core/owner_login.html"
-    authentication_form = OwnerLoginForm
-    redirect_authenticated_user = False
-
-    def get_success_url(self):
-        return reverse_lazy("core:analytics_dashboard")
-
-    def form_valid(self, form):
-        if not form.get_user().is_staff:
-            form.add_error(None, "Contul nu are acces la panoul de analytics.")
-            return self.form_invalid(form)
-        return super().form_valid(form)
-
-
-class OwnerLogoutView(LogoutView):
-    next_page = reverse_lazy("core:owner_login")
-
-
-class AdminOnlyMixin(LoginRequiredMixin):
-    login_url = reverse_lazy("core:owner_login")
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        if not request.user.is_staff:
-            return HttpResponseForbidden("Access denied.")
-        return super().dispatch(request, *args, **kwargs)
-
-
-class AnalyticsDashboardView(AdminOnlyMixin, TemplateView):
-    template_name = "core/analytics_dashboard.html"
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-
-        total_events = Event.objects.count()
-        total_page_views = Event.objects.filter(event_type="page_view").count()
-        total_contact = Event.objects.filter(event_type="contact_submit").count()
-
-        top_elements_qs = (
-            Event.objects.exclude(element="")
-            .values("element")
-            .annotate(total=Count("id"))
-            .order_by("-total")[:10]
-        )
-
-        top_pages_qs = (
-            Event.objects.exclude(page="")
-            .values("page")
-            .annotate(total=Count("id"))
-            .order_by("-total")[:10]
-        )
-
-        timeline_qs = (
-            Event.objects.annotate(day=TruncDate("timestamp"))
-            .values("day")
-            .annotate(total=Count("id"))
-            .order_by("day")
-        )
-
-        scroll_values = []
-        for event in Event.objects.filter(event_type="scroll_depth")[:300]:
-            depth = event.additional_data.get("depth")
-            if isinstance(depth, (int, float)):
-                scroll_values.append(depth)
-
-        context.update(
-            {
-                "total_events": total_events,
-                "total_page_views": total_page_views,
-                "total_contact": total_contact,
-                "top_elements": list(top_elements_qs),
-                "top_pages": list(top_pages_qs),
-                "chart_labels": json.dumps([entry["day"].isoformat() for entry in timeline_qs]),
-                "chart_values": json.dumps([entry["total"] for entry in timeline_qs]),
-                "avg_scroll_depth": round(sum(scroll_values) / len(scroll_values), 2) if scroll_values else 0,
-            }
-        )
-        return context
-
-
 @require_GET
 def robots_txt(_: HttpRequest) -> HttpResponse:
     lines = [
         "User-agent: *",
         "Allow: /",
         "Disallow: /admin/",
-        "Disallow: /owner/",
         f"Sitemap: {settings.SITE_URL.rstrip('/')}/sitemap.xml",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")

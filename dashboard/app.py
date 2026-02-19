@@ -1,8 +1,10 @@
+import hmac
 import os
 
 import pandas as pd
 import plotly.express as px
 from dash import Dash, Input, Output, dcc, html
+from flask import Response, request
 from sqlalchemy import create_engine, text
 
 
@@ -15,6 +17,8 @@ def get_database_url() -> str:
 
 
 ENGINE = create_engine(get_database_url())
+DASH_USER = os.getenv("OWNER_DASH_USERNAME", "owner")
+DASH_PASSWORD = os.getenv("OWNER_DASH_PASSWORD", "change-me")
 
 
 def load_events_df() -> pd.DataFrame:
@@ -40,6 +44,22 @@ def load_events_df() -> pd.DataFrame:
 
 app = Dash(__name__)
 app.title = "Premiere Aesthetics Analytics"
+
+
+def is_authorized(username: str, password: str) -> bool:
+    return hmac.compare_digest(username, DASH_USER) and hmac.compare_digest(password, DASH_PASSWORD)
+
+
+@app.server.before_request
+def require_basic_auth():
+    auth = request.authorization
+    if auth and is_authorized(auth.username, auth.password):
+        return None
+    return Response(
+        "Authentication required.",
+        401,
+        {"WWW-Authenticate": 'Basic realm="Premiere Analytics"'},
+    )
 
 app.layout = html.Div(
     [
