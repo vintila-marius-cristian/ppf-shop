@@ -77,7 +77,7 @@ sed \
 
 docker compose -f docker-compose.prod.yml -f docker-compose.prod-bootstrap.yml up -d db web dashboard nginx
 
-docker compose -f docker-compose.prod.yml run --rm certbot sh -c \
+docker compose -f docker-compose.prod.yml run --rm --entrypoint /bin/sh certbot -c \
   "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo ok > /var/www/certbot/.well-known/acme-challenge/healthcheck.txt"
 
 if ! curl -fsS --max-time 15 "http://$DOMAIN/.well-known/acme-challenge/healthcheck.txt" >/dev/null; then

@@ -5,10 +5,10 @@
   --accent-teal: #6f6f6f;
   --text-main: #f3f3f3;
   --text-soft: #b4b4b4;
-  --glass-light: rgba(255, 255, 255, 0.34);
-  --glass-dark: rgba(7, 7, 7, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.44);
-  --shadow-soft: 0 24px 56px rgba(0, 0, 0, 0.58);
+  --glass-light: rgba(255, 255, 255, 0.16);
+  --glass-dark: rgba(8, 8, 8, 0.84);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.48);
 }
 
 * {
@@ -64,11 +64,11 @@ a:hover {
 .glass-card {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(155deg, var(--glass-light), rgba(255, 255, 255, 0.08) 28%, var(--glass-dark));
+  background: linear-gradient(160deg, var(--glass-light), rgba(255, 255, 255, 0.04) 26%, var(--glass-dark));
   border: 1px solid var(--glass-border);
   border-radius: 1.1rem;
-  backdrop-filter: blur(24px) saturate(175%);
-  -webkit-backdrop-filter: blur(24px) saturate(175%);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
   box-shadow: var(--shadow-soft);
 }
 
@@ -77,14 +77,14 @@ a:hover {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 34%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 38%);
 }
 
 .glass-nav {
-  background: rgba(8, 8, 8, 0.8);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.38);
-  backdrop-filter: blur(26px) saturate(175%);
-  -webkit-backdrop-filter: blur(26px) saturate(175%);
+  background: rgba(8, 8, 8, 0.74);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
 }
 
 .brand-mark {
@@ -164,11 +164,11 @@ a:hover {
   margin-bottom: 1.2rem;
   padding: 0.85rem 1rem;
   border-radius: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.14), rgba(8, 8, 8, 0.56));
-  backdrop-filter: blur(14px) saturate(155%);
-  -webkit-backdrop-filter: blur(14px) saturate(155%);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(8, 8, 8, 0.64));
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
 }
 
 .section-head::before {
@@ -177,7 +177,7 @@ a:hover {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(105deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 36%);
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 40%);
 }
 
 .section-head > * {
@@ -234,7 +234,7 @@ a:hover {
   height: clamp(280px, 32vw, 420px);
   object-fit: contain;
   background: linear-gradient(150deg, rgba(8, 8, 8, 0.92), rgba(32, 32, 32, 0.66));
-  padding: 0.45rem;
+  padding: 0.1rem;
 }
 
 .gallery-card .card-body {
@@ -413,9 +413,9 @@ input[type="email"],
 input[type="tel"] {
   border: 1px solid rgba(255, 255, 255, 0.24);
   color: var(--text-main);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(12, 12, 12, 0.62));
-  backdrop-filter: blur(10px) saturate(140%);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(12, 12, 12, 0.68));
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .form-control::placeholder,
@@ -431,8 +431,8 @@ input[type="email"]:focus,
 input[type="tel"]:focus {
   color: var(--text-main);
   border-color: rgba(242, 177, 52, 0.72);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(12, 12, 12, 0.68));
-  box-shadow: 0 0 0 0.2rem rgba(242, 177, 52, 0.2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(12, 12, 12, 0.74));
+  box-shadow: 0 0 0 0.16rem rgba(242, 177, 52, 0.18);
 }
 
 .article-content p {
@@ -441,22 +441,22 @@ input[type="tel"]:focus {
 }
 
 .gallery-modal .modal-content {
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.28), rgba(7, 7, 7, 0.8));
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.14), rgba(7, 7, 7, 0.86));
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
 }
 
 .gallery-modal-media-wrap {
-  min-height: 55vh;
-  max-height: 78vh;
+  min-height: 62vh;
+  height: min(78vh, 760px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 1rem;
-  background: rgba(6, 6, 6, 0.82);
+  background: rgba(6, 6, 6, 0.88);
 }
 
 .gallery-modal .btn-close {
@@ -465,10 +465,10 @@ input[type="tel"]:focus {
 
 .alert {
   border: 1px solid rgba(255, 255, 255, 0.32);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(12, 12, 12, 0.64));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(12, 12, 12, 0.7));
   color: var(--text-main);
-  backdrop-filter: blur(12px) saturate(145%);
-  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .pagination .page-link {
@@ -485,16 +485,17 @@ input[type="tel"]:focus {
 
 .gallery-modal-media {
   max-width: 100%;
-  max-height: 74vh;
-  width: auto;
-  height: auto;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 0.8rem;
 }
 
 video.gallery-modal-media {
   width: 100%;
-  height: auto;
+  height: 100%;
+  background: #000;
 }
 
 [data-reveal] {

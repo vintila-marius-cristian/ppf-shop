@@ -1,4 +1,5 @@
 import shutil
+import re
 from datetime import timedelta
 from pathlib import Path
 
@@ -12,8 +13,149 @@ from core.models import BlogPost, GalleryItem, Service, Testimonial
 class Command(BaseCommand):
     help = "Copies client media into MEDIA_ROOT/client and seeds baseline content records."
 
-    def handle(self, *args, **options):
+    IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".avif", ".bmp", ".gif"}
+    VIDEO_EXTENSIONS = {".mp4", ".mov", ".webm", ".m4v", ".mkv", ".avi"}
+    SERVICE_KEYWORDS = (
+        ("ppf", "ppf"),
+        ("folie", "ppf"),
+        ("paint", "ppf"),
+        ("clearbra", "ppf"),
+        ("ceramic", "ceramic"),
+        ("coating", "ceramic"),
+        ("tint", "tint"),
+        ("geam", "tint"),
+        ("window", "tint"),
+        ("detail", "detailing"),
+        ("interior", "detailing"),
+        ("exterior", "detailing"),
+    )
+
+    def _resolve_media_source(self) -> Path | None:
         source = Path(settings.CLIENT_MEDIA_DIR)
+        if source.exists():
+            return source
+
+        local_source = Path(settings.BASE_DIR) / "media" / "client"
+        if local_source.exists():
+            return local_source
+
+        legacy_source = Path(settings.BASE_DIR) / "premiere aestethics content"
+        if legacy_source.exists():
+            return legacy_source
+
+        return None
+
+    def _copy_media_tree(self, source: Path, target: Path) -> int:
+        copied_count = 0
+        for file_path in source.rglob("*"):
+            if not file_path.is_file():
+                continue
+            relative = file_path.relative_to(source)
+            destination = target / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            if destination.exists():
+                source_stat = file_path.stat()
+                destination_stat = destination.stat()
+                if (
+                    source_stat.st_size == destination_stat.st_size
+                    and int(source_stat.st_mtime) == int(destination_stat.st_mtime)
+                ):
+                    continue
+            shutil.copy2(file_path, destination)
+            copied_count += 1
+        return copied_count
+
+    def _sync_hero_video(self, target: Path, source: Path | None) -> None:
+        candidates = [path for path in Path(settings.BASE_DIR).glob("*.mp4") if path.is_file()]
+        if source and source.exists():
+            candidates.extend([path for path in source.rglob("*") if path.is_file() and path.suffix.lower() in self.VIDEO_EXTENSIONS])
+        candidates.extend([path for path in target.rglob("*") if path.is_file() and path.suffix.lower() in self.VIDEO_EXTENSIONS])
+
+        if not candidates:
+            self.stdout.write(self.style.WARNING("No video found to sync hero-fullres.mp4."))
+            return
+
+        best_video = max(candidates, key=lambda path: path.stat().st_size)
+        hero_target = target / "hero-fullres.mp4"
+        if best_video.resolve() != hero_target.resolve():
+            shutil.copy2(best_video, hero_target)
+            self.stdout.write(self.style.SUCCESS(f"Hero video synced from {best_video.name} to {hero_target.name}"))
+        else:
+            self.stdout.write(self.style.SUCCESS("Hero video already up to date."))
+
+    def _humanize_title(self, path: Path) -> str:
+        cleaned = re.sub(r"[_-]+", " ", path.stem)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+        return cleaned.title() or "Proiect"
+
+    def _guess_service(self, relative_path: str, services_by_category: dict[str, Service]) -> Service | None:
+        lower = relative_path.lower()
+        for keyword, category in self.SERVICE_KEYWORDS:
+            if keyword in lower and category in services_by_category:
+                return services_by_category[category]
+        return services_by_category.get("ppf")
+
+    def _sync_gallery_items(self, target: Path, services_by_category: dict[str, Service]) -> int:
+        existing_images = {value for value in GalleryItem.objects.values_list("image", flat=True) if value}
+        existing_videos = {value for value in GalleryItem.objects.values_list("video", flat=True) if value}
+        featured_slots = max(0, 12 - GalleryItem.objects.filter(is_featured=True).count())
+        created_count = 0
+
+        media_files = sorted(
+            [
+                path
+                for path in target.rglob("*")
+                if path.is_file() and path.suffix.lower() in (self.IMAGE_EXTENSIONS | self.VIDEO_EXTENSIONS)
+            ],
+            key=lambda item: item.name.lower(),
+        )
+
+        for media_path in media_files:
+            if media_path.name.lower() == "hero-fullres.mp4":
+                continue
+
+            relative = f"client/{media_path.relative_to(target).as_posix()}"
+            suffix = media_path.suffix.lower()
+            service = self._guess_service(relative, services_by_category)
+            should_feature = featured_slots > 0
+            title = self._humanize_title(media_path)
+            caption = "Lucrare reala din atelier Premiere Aesthetics."
+
+            if suffix in self.IMAGE_EXTENSIONS:
+                if relative in existing_images:
+                    continue
+                GalleryItem.objects.create(
+                    title=title,
+                    image=relative,
+                    related_service=service,
+                    caption=caption,
+                    description=f"Material importat automat din {relative}.",
+                    is_featured=should_feature,
+                    sort_order=500 + created_count,
+                )
+                existing_images.add(relative)
+            else:
+                if relative in existing_videos:
+                    continue
+                GalleryItem.objects.create(
+                    title=title,
+                    video=relative,
+                    related_service=service,
+                    caption=caption,
+                    description=f"Material video importat automat din {relative}.",
+                    is_featured=should_feature,
+                    sort_order=500 + created_count,
+                )
+                existing_videos.add(relative)
+
+            created_count += 1
+            if should_feature:
+                featured_slots -= 1
+
+        return created_count
+
+    def handle(self, *args, **options):
+        source = self._resolve_media_source()
         target = Path(settings.MEDIA_ROOT) / "client"
         try:
             target.mkdir(parents=True, exist_ok=True)
@@ -28,38 +170,16 @@ class Command(BaseCommand):
                 )
             )
 
-        if not source.exists():
-            local_source = Path(settings.BASE_DIR) / "media" / "client"
-            if local_source.exists():
-                source = local_source
-            else:
-                legacy_source = Path(settings.BASE_DIR) / "premiere aestethics content"
-                if legacy_source.exists():
-                    source = legacy_source
-
-        if source.exists():
+        if source and source.exists():
             if source.resolve() == target.resolve():
                 self.stdout.write(self.style.WARNING("Client media source and target are identical; skipping copy phase."))
             else:
-                for file in source.iterdir():
-                    if file.is_file():
-                        shutil.copy2(file, target / file.name)
-                self.stdout.write(self.style.SUCCESS(f"Media copied from {source} to {target}"))
+                copied_count = self._copy_media_tree(source, target)
+                self.stdout.write(self.style.SUCCESS(f"Media synced from {source} to {target} ({copied_count} files copied)."))
         else:
-            self.stdout.write(self.style.WARNING(f"Client media directory not found: {source}"))
+            self.stdout.write(self.style.WARNING("Client media directory not found. Continuing with existing media volume content."))
 
-        # Keep a deterministic hero video path for templates and prefer the biggest root-level source.
-        root_videos = sorted(
-            [path for path in Path(settings.BASE_DIR).glob("*.mp4") if path.is_file()],
-            key=lambda path: path.stat().st_size,
-            reverse=True,
-        )
-        if root_videos:
-            hero_target = target / "hero-fullres.mp4"
-            shutil.copy2(root_videos[0], hero_target)
-            self.stdout.write(self.style.SUCCESS(f"Hero video synced: {hero_target.name}"))
-        else:
-            self.stdout.write(self.style.WARNING("No root-level .mp4 video found for hero-fullres.mp4 sync."))
+        self._sync_hero_video(target, source)
 
         services = [
             {
@@ -117,6 +237,11 @@ class Command(BaseCommand):
 
         for payload in services:
             Service.objects.update_or_create(slug=payload["slug"], defaults=payload)
+
+        services_by_category = {service.category: service for service in Service.objects.all()}
+        synced_gallery_items = self._sync_gallery_items(target, services_by_category)
+        if synced_gallery_items:
+            self.stdout.write(self.style.SUCCESS(f"Gallery synced: {synced_gallery_items} media item(s) imported."))
 
         if not Testimonial.objects.exists():
             Testimonial.objects.bulk_create(
