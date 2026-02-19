@@ -10,6 +10,7 @@ if [[ ! -f .env ]]; then
 fi
 
 docker compose -f docker-compose.prod.yml build
-docker compose -f docker-compose.prod.yml up -d
-docker compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
-docker compose -f docker-compose.prod.yml exec web python manage.py collectstatic --noinput
+docker compose -f docker-compose.prod.yml up -d db
+docker compose -f docker-compose.prod.yml run --rm web python manage.py migrate --noinput
+docker compose -f docker-compose.prod.yml run --rm web python manage.py collectstatic --noinput
+docker compose -f docker-compose.prod.yml up -d web dashboard nginx

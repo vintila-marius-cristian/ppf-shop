@@ -1,0 +1,6 @@
+
+mkdir -p /opt/schrodingercat
+cd /opt/schrodingercat
+git clone https://github.com/vintila-marius-cristian/ppf-shop.git app
+cd /opt/schrodingercat/app
+cp /opt/schrodingercat/app/.env.example /opt/schrodingercat/app/.env
