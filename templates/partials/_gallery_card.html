@@ -1,17 +1,17 @@
-<figure class="glass-card gallery-card" data-track-event="gallery_item_click" data-track-element="gallery:{{ item.id }}">
+<figure class="glass-card gallery-card" data-luxury-reveal data-track-event="gallery_item_click" data-track-element="gallery:{{ item.id }}">
   {% if item.video %}
     <video preload="metadata" class="card-media" loading="lazy" muted playsinline>
       <source src="{{ item.video.url }}" type="video/mp4" />
       Browserul tau nu suporta video.
     </video>
   {% elif item.image %}
-    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-media" loading="lazy" />
+    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-media" loading="lazy" data-webgl-media />
   {% else %}
-    <img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ item.title }}" class="card-media" loading="lazy" />
+    <img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ item.title }}" class="card-media" loading="lazy" data-webgl-media />
   {% endif %}
   <figcaption class="card-body">
-    <h3 class="h6 mb-1">{{ item.title }}</h3>
-    <p class="mb-0">{{ item.caption|default:item.description|truncatewords:18 }}</p>
+    <h3 class="h6 mb-1" data-luxury-reveal>{{ item.title }}</h3>
+    <p class="mb-0" data-luxury-reveal>{{ item.caption|default:item.description|truncatewords:18 }}</p>
     <button
       type="button"
       class="btn btn-outline-light btn-sm mt-3"

@@ -26,26 +26,27 @@
 {% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <article class="glass-card p-4 p-lg-5">
-    <p class="caps">{{ post.published_at|date:"d M Y" }} · {{ post.reading_time_minutes }} min</p>
-    <h1>{{ post.title }}</h1>
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <article class="glass-card p-4 p-lg-5" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>{{ post.published_at|date:"d M Y" }} · {{ post.reading_time_minutes }} min</p>
+    <h1 data-luxury-reveal>{{ post.title }}</h1>
     {% if post.featured_image %}
-      <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="w-100 rounded-4 my-3" loading="lazy" />
+      <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="w-100 rounded-4 my-3" loading="lazy" data-luxury-reveal data-webgl-media />
     {% else %}
-      <img src="{{ MEDIA_URL }}client/image-4.jpeg" alt="{{ post.title }}" class="w-100 rounded-4 my-3" loading="lazy" />
+      <img src="{{ MEDIA_URL }}client/image-4.jpeg" alt="{{ post.title }}" class="w-100 rounded-4 my-3" loading="lazy" data-luxury-reveal data-webgl-media />
     {% endif %}
-    <p class="lead">{{ post.summary }}</p>
-    <div class="article-content">{{ post.content|linebreaks }}</div>
+    <p class="lead" data-luxury-reveal>{{ post.summary }}</p>
+    <div class="article-content" data-luxury-reveal>{{ post.content|linebreaks }}</div>
 
     {% if post.categories.all %}
-      <div class="mt-4">
+      <div class="mt-4" data-luxury-reveal>
         <strong>Categorii:</strong>
         {% for cat in post.categories.all %}<span class="badge text-bg-dark">{{ cat.name }}</span>{% endfor %}
       </div>
     {% endif %}
     {% if post.tags.all %}
-      <div class="mt-2">
+      <div class="mt-2" data-luxury-reveal>
         <strong>Tag-uri:</strong>
         {% for tag in post.tags.all %}<span class="badge text-bg-secondary">{{ tag.name }}</span>{% endfor %}
       </div>
@@ -53,8 +54,9 @@
   </article>
 </section>
 
-<section class="container pb-5">
-  <h2 class="h4 mb-3">Articole similare</h2>
+<section class="container pb-5 editorial-chapter" data-chapter data-chapter-effect="corner-fold">
+  <span class="chapter-corner" aria-hidden="true"></span>
+  <h2 class="h4 mb-3" data-luxury-reveal>Articole similare</h2>
   <div class="grid-cards">
     {% for post in related_posts %}
       {% include 'partials/_blog_card.html' with post=post %}

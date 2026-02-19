@@ -4,17 +4,18 @@
 {% block meta_description %}Articole despre PPF, ceramic coating, intretinere si sfaturi pentru protectia masinii in Pitesti.{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <div class="section-head">
-    <p class="caps">Blog</p>
-    <h1>Ghiduri pentru protectia masinii</h1>
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Blog</p>
+    <h1 data-luxury-reveal>Ghiduri pentru protectia masinii</h1>
   </div>
 
   <div class="grid-cards">
     {% for post in posts %}
       {% include 'partials/_blog_card.html' with post=post %}
     {% empty %}
-      <article class="glass-card p-4"><p class="mb-0">Nu exista articole publicate momentan.</p></article>
+      <article class="glass-card p-4" data-luxury-reveal><p class="mb-0">Nu exista articole publicate momentan.</p></article>
     {% endfor %}
   </div>
 

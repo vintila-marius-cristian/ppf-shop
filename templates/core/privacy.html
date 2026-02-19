@@ -4,20 +4,21 @@
 {% block meta_description %}Detalii despre prelucrarea datelor personale, cookie-uri si servicii third-party folosite pe acest website.{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <article class="glass-card p-4 p-lg-5">
-    <h1>Politica de confidentialitate</h1>
-    <p>Acest website colecteaza datele trimise prin formularul de contact strict pentru a raspunde solicitarilor comerciale.</p>
-    <h2 class="h4">Date colectate</h2>
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <article class="glass-card p-4 p-lg-5" data-luxury-reveal>
+    <h1 data-luxury-reveal>Politica de confidentialitate</h1>
+    <p data-luxury-reveal>Acest website colecteaza datele trimise prin formularul de contact strict pentru a raspunde solicitarilor comerciale.</p>
+    <h2 class="h4" data-luxury-reveal>Date colectate</h2>
     <ul>
       <li>Nume, email, telefon si mesaj (formular contact)</li>
       <li>Date tehnice anonimizate pentru analytics (event tracking)</li>
       <li>Date furnizate de platforme third-party prin embed-uri sociale (Instagram)</li>
     </ul>
-    <h2 class="h4">Scop</h2>
-    <p>Imbunatatirea experientei utilizatorilor, monitorizarea performantei site-ului si comunicarea cu potentialii clienti.</p>
-    <h2 class="h4">Drepturile tale</h2>
-    <p>Pentru solicitari de acces sau stergere date, contacteaza-ne la <a href="mailto:{{ business.email }}">{{ business.email }}</a>.</p>
+    <h2 class="h4" data-luxury-reveal>Scop</h2>
+    <p data-luxury-reveal>Imbunatatirea experientei utilizatorilor, monitorizarea performantei site-ului si comunicarea cu potentialii clienti.</p>
+    <h2 class="h4" data-luxury-reveal>Drepturile tale</h2>
+    <p data-luxury-reveal>Pentru solicitari de acces sau stergere date, contacteaza-ne la <a href="mailto:{{ business.email }}">{{ business.email }}</a>.</p>
   </article>
 </section>
 {% endblock %}

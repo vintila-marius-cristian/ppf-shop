@@ -9,23 +9,6 @@
     }, 5000);
   }
 
-  const reveals = document.querySelectorAll("section, .glass-card");
-  reveals.forEach((el) => el.setAttribute("data-reveal", ""));
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.16 },
-  );
-
-  document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
-
   const cookieBanner = document.getElementById("cookieBanner");
   if (cookieBanner && !localStorage.getItem("cookieConsent")) {
     cookieBanner.hidden = false;

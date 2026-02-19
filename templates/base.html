@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/luxury.css' %}" />
 
   <script type="application/ld+json">
     {
@@ -41,8 +42,24 @@
     }
   </script>
   {% block structured_data %}{% endblock %}
+  {% block extra_head %}{% endblock %}
 </head>
 <body data-track-page="true">
+  <div id="entryLoader" aria-hidden="true">
+    <div class="entry-loader__inner">
+      <p class="entry-loader__logo mb-0">Premiere Aesthetics</p>
+      <span class="entry-loader__line"></span>
+    </div>
+  </div>
+
+  <div id="transitionOverlay" class="transition-overlay" aria-hidden="true">
+    <span class="transition-overlay__line"></span>
+    <span class="transition-overlay__accent"></span>
+  </div>
+
+  <canvas id="webglEnhancerCanvas" class="webgl-enhancer-canvas" aria-hidden="true"></canvas>
+  <div id="luxuryCursor" hidden aria-hidden="true"></div>
+
   {% include 'partials/_navbar.html' %}
 
   <main class="page-shell">
@@ -78,8 +95,11 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="{% static 'js/main.js' %}"></script>
+  <script type="module" src="{% static 'js/luxury/index.js' %}"></script>
   <script src="{% static 'js/analytics.js' %}"></script>
 
   {% if analytics.plausible_domain %}

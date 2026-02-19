@@ -19,6 +19,19 @@ def get_database_url() -> str:
 ENGINE = create_engine(get_database_url())
 DASH_USER = os.getenv("OWNER_DASH_USERNAME", "owner")
 DASH_PASSWORD = os.getenv("OWNER_DASH_PASSWORD", "change-me")
+DASH_URL_BASE_PATHNAME = os.getenv("DASH_URL_BASE_PATHNAME", "/")
+
+
+def normalize_base_path(path_value: str) -> str:
+    path = (path_value or "/").strip()
+    if not path.startswith("/"):
+        path = f"/{path}"
+    if not path.endswith("/"):
+        path = f"{path}/"
+    return path
+
+
+DASH_BASE_PATH = normalize_base_path(DASH_URL_BASE_PATHNAME)
 
 
 def load_events_df() -> pd.DataFrame:
@@ -42,7 +55,11 @@ def load_events_df() -> pd.DataFrame:
     return df
 
 
-app = Dash(__name__)
+app = Dash(
+    __name__,
+    requests_pathname_prefix=DASH_BASE_PATH,
+    routes_pathname_prefix=DASH_BASE_PATH,
+)
 app.title = "Premiere Aesthetics Analytics"
 
 

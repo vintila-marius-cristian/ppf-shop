@@ -2,30 +2,36 @@
 
 {% block title %}PPF Pitesti | Premiere Aesthetics{% endblock %}
 {% block meta_description %}Centru premium de PPF, ceramic coating, window tinting si detailing in Pitesti. Rezultate impecabile, garantie si consultanta dedicata.{% endblock %}
+{% block extra_head %}
+  <link rel="preload" as="image" href="{{ MEDIA_URL }}client/image-1.jpeg" />
+  <link rel="preload" as="video" href="{{ MEDIA_URL }}client/hero-fullres.mp4" type="video/mp4" />
+{% endblock %}
 
 {% block content %}
-<section class="hero-section">
-  <video class="hero-media" autoplay muted loop playsinline poster="{{ MEDIA_URL }}client/image-1.jpeg">
+<section class="hero-section editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <video class="hero-media" data-hero-depth data-webgl-media autoplay muted loop playsinline poster="{{ MEDIA_URL }}client/image-1.jpeg">
     <source src="{{ MEDIA_URL }}client/hero-fullres.mp4" type="video/mp4" />
     <source src="{{ MEDIA_URL }}client/video-1.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay container">
-    <div class="glass-card hero-card">
-      <p class="caps">Premium PPF Garage · Pitesti</p>
-      <h1>Protectie auto de nivel showroom pentru fiecare detaliu.</h1>
-      <p>Transformam protectia caroseriei intr-o experienta premium: PPF, ceramic coating, folie geamuri si detailing cu atentie obsesiva la finisaj.</p>
+    <span class="chapter-rule" aria-hidden="true"></span>
+    <div class="glass-card hero-card" data-hero-depth>
+      <p class="caps" data-luxury-reveal>Premium PPF Garage · Pitesti</p>
+      <h1 data-hero-heading>Protectie auto de nivel showroom pentru fiecare detaliu.</h1>
+      <p data-luxury-reveal>Transformam protectia caroseriei intr-o experienta premium: PPF, ceramic coating, folie geamuri si detailing cu atentie obsesiva la finisaj.</p>
       <div class="d-flex flex-wrap gap-2">
-        <a class="btn btn-primary" href="{% url 'core:contact' %}" data-track-event="cta_click" data-track-element="hero_contact">Programeaza o consultatie</a>
-        <a class="btn btn-outline-light" href="{% url 'core:service_list' %}" data-track-event="cta_click" data-track-element="hero_services">Vezi serviciile</a>
+        <a class="btn btn-primary" href="{% url 'core:contact' %}" data-hero-cta data-luxury-reveal data-track-event="cta_click" data-track-element="hero_contact">Programeaza o consultatie</a>
+        <a class="btn btn-outline-light" href="{% url 'core:service_list' %}" data-hero-cta data-luxury-reveal data-track-event="cta_click" data-track-element="hero_services">Vezi serviciile</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="container py-5">
-  <div class="section-head">
-    <p class="caps">Servicii principale</p>
-    <h2>Solutii construite pentru masini premium</h2>
+<section class="container py-5 editorial-chapter" data-chapter data-chapter-effect="corner-fold">
+  <span class="chapter-corner" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Servicii principale</p>
+    <h2 data-luxury-reveal>Solutii construite pentru masini premium</h2>
   </div>
   <div class="grid-cards">
     {% for service in services %}
@@ -34,43 +40,46 @@
   </div>
 </section>
 
-<section class="container py-4">
-  <div class="section-head">
-    <p class="caps">Galerie recenta</p>
-    <h2>Lucrari realizate in atelier</h2>
+<section class="container py-4 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Galerie recenta</p>
+    <h2 data-luxury-reveal>Lucrari realizate in atelier</h2>
   </div>
   <div class="grid-gallery">
     {% for item in gallery_highlights %}
       {% include 'partials/_gallery_card.html' with item=item %}
     {% empty %}
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-5.jpeg" alt="Detaliu lucrare PPF" class="card-media" /></figure>
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-6.jpeg" alt="Detaliu lucrare detailing" class="card-media" /></figure>
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-7.jpeg" alt="Detaliu lucrare ceramic coating" class="card-media" /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-5.jpeg" alt="Detaliu lucrare PPF" class="card-media" data-webgl-media /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-6.jpeg" alt="Detaliu lucrare detailing" class="card-media" data-webgl-media /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-7.jpeg" alt="Detaliu lucrare ceramic coating" class="card-media" data-webgl-media /></figure>
     {% endfor %}
   </div>
   <div class="mt-3">
-    <a class="btn btn-outline-light" href="{% url 'core:gallery' %}">Exploreaza galeria completa</a>
+    <a class="btn btn-outline-light" href="{% url 'core:gallery' %}" data-luxury-reveal>Exploreaza galeria completa</a>
   </div>
 </section>
 
-<section class="container py-5">
-  <div class="section-head">
-    <p class="caps">Recenzii reale</p>
-    <h2>Ce spun clientii nostri</h2>
+<section class="container py-5 editorial-chapter" data-chapter data-chapter-effect="corner-fold">
+  <span class="chapter-corner" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Recenzii reale</p>
+    <h2 data-luxury-reveal>Ce spun clientii nostri</h2>
   </div>
   {% include 'partials/_testimonial_slider.html' with testimonials=testimonials %}
 </section>
 
-<section class="container py-4">
-  <div class="section-head">
-    <p class="caps">Noutati</p>
-    <h2>Sfaturi despre PPF si detailing</h2>
+<section class="container py-4 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Noutati</p>
+    <h2 data-luxury-reveal>Sfaturi despre PPF si detailing</h2>
   </div>
   <div class="grid-cards">
     {% for post in recent_posts %}
       {% include 'partials/_blog_card.html' with post=post %}
     {% empty %}
-      <article class="glass-card p-4">
+      <article class="glass-card p-4" data-luxury-reveal>
         <h3 class="h5">Continut editorial in pregatire</h3>
         <p>Publicam ghiduri utile despre protectia masinii in climatul urban din Pitesti.</p>
       </article>
@@ -78,11 +87,12 @@
   </div>
 </section>
 
-<section class="container pb-5">
-  <div class="glass-card cta-strip">
-    <h2>Vrei un plan personalizat pentru masina ta?</h2>
-    <p>Trimite-ne modelul auto si iti recomandam combinatia optima de protectie.</p>
-    <a class="btn btn-primary" href="{% url 'core:contact' %}" data-track-event="cta_click" data-track-element="footer_contact">Solicita oferta</a>
+<section class="container pb-5 editorial-chapter" data-chapter data-chapter-effect="corner-fold">
+  <span class="chapter-corner" aria-hidden="true"></span>
+  <div class="glass-card cta-strip" data-luxury-reveal>
+    <h2 data-luxury-reveal>Vrei un plan personalizat pentru masina ta?</h2>
+    <p data-luxury-reveal>Trimite-ne modelul auto si iti recomandam combinatia optima de protectie.</p>
+    <a class="btn btn-primary" href="{% url 'core:contact' %}" data-luxury-reveal data-track-event="cta_click" data-track-element="footer_contact">Solicita oferta</a>
   </div>
 </section>
 {% endblock %}

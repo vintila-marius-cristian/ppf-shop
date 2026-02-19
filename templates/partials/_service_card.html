@@ -1,14 +1,14 @@
-<article class="glass-card service-card" data-track-event="service_card_click" data-track-element="service:{{ service.slug }}">
+<article class="glass-card service-card" data-luxury-reveal data-track-event="service_card_click" data-track-element="service:{{ service.slug }}">
   {% if service.image %}
-    <img src="{{ service.image.url }}" alt="{{ service.name }}" class="card-media" loading="lazy" />
+    <img src="{{ service.image.url }}" alt="{{ service.name }}" class="card-media" loading="lazy" data-webgl-media />
   {% else %}
-    <img src="{{ MEDIA_URL }}client/image-2.jpeg" alt="{{ service.name }}" class="card-media" loading="lazy" />
+    <img src="{{ MEDIA_URL }}client/image-2.jpeg" alt="{{ service.name }}" class="card-media" loading="lazy" data-webgl-media />
   {% endif %}
   <div class="card-body">
-    <p class="caps">{{ service.get_category_display }}</p>
-    <h3 class="h5">{{ service.name }}</h3>
-    <p>{{ service.short_description|default:service.description|truncatewords:24 }}</p>
-    {% if service.price_range %}<p class="price-tag">{{ service.price_range }}</p>{% endif %}
+    <p class="caps" data-luxury-reveal>{{ service.get_category_display }}</p>
+    <h3 class="h5" data-luxury-reveal>{{ service.name }}</h3>
+    <p data-luxury-reveal>{{ service.short_description|default:service.description|truncatewords:24 }}</p>
+    {% if service.price_range %}<p class="price-tag" data-luxury-reveal>{{ service.price_range }}</p>{% endif %}
     <a class="btn btn-outline-light btn-sm" href="{{ service.get_absolute_url }}">Detalii serviciu</a>
   </div>
 </article>

@@ -4,36 +4,38 @@
 {% block meta_description %}{{ service.seo_description|default:service.short_description|default:service.description|truncatewords:30 }}{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <div class="glass-card p-4 p-lg-5">
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="glass-card p-4 p-lg-5" data-luxury-reveal>
     <div class="row g-4 align-items-center">
       <div class="col-lg-6">
-        <p class="caps">{{ service.get_category_display }}</p>
-        <h1>{{ service.name }}</h1>
-        <p>{{ service.description }}</p>
-        {% if service.price_range %}<p><strong>Pachet orientativ:</strong> {{ service.price_range }}</p>{% endif %}
-        <a class="btn btn-primary" href="{% url 'core:contact' %}" data-track-event="cta_click" data-track-element="service_contact_{{ service.slug }}">Programeaza consultatie</a>
+        <p class="caps" data-luxury-reveal>{{ service.get_category_display }}</p>
+        <h1 data-luxury-reveal>{{ service.name }}</h1>
+        <p data-luxury-reveal>{{ service.description }}</p>
+        {% if service.price_range %}<p data-luxury-reveal><strong>Pachet orientativ:</strong> {{ service.price_range }}</p>{% endif %}
+        <a class="btn btn-primary" href="{% url 'core:contact' %}" data-luxury-reveal data-track-event="cta_click" data-track-element="service_contact_{{ service.slug }}">Programeaza consultatie</a>
       </div>
       <div class="col-lg-6">
         {% if service.video %}
-          <video controls class="w-100 rounded-4" poster="{{ MEDIA_URL }}client/image-1.jpeg">
+          <video controls class="w-100 rounded-4" poster="{{ MEDIA_URL }}client/image-1.jpeg" data-luxury-reveal>
             <source src="{{ service.video.url }}" type="video/mp4" />
           </video>
         {% elif service.image %}
-          <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-100 rounded-4" />
+          <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-100 rounded-4" data-luxury-reveal data-webgl-media />
         {% else %}
-          <img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="{{ service.name }}" class="w-100 rounded-4" />
+          <img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="{{ service.name }}" class="w-100 rounded-4" data-luxury-reveal data-webgl-media />
         {% endif %}
       </div>
     </div>
   </div>
 </section>
 
-<section class="container py-4">
+<section class="container py-4 editorial-chapter" data-chapter data-chapter-effect="corner-fold">
+  <span class="chapter-corner" aria-hidden="true"></span>
   <div class="row g-4">
     <div class="col-lg-7">
-      <article class="glass-card p-4">
-        <h2 class="h4">Ce include serviciul</h2>
+      <article class="glass-card p-4" data-luxury-reveal>
+        <h2 class="h4" data-luxury-reveal>Ce include serviciul</h2>
         <ul>
           <li>Inspectie initiala a suprafetei si recomandari personalizate.</li>
           <li>Pregatire profesionala in zona controlata, fara contaminanti.</li>
@@ -43,8 +45,8 @@
       </article>
     </div>
     <div class="col-lg-5">
-      <article class="glass-card p-4">
-        <h2 class="h4">FAQ</h2>
+      <article class="glass-card p-4" data-luxury-reveal>
+        <h2 class="h4" data-luxury-reveal>FAQ</h2>
         {% for faq in faqs %}
           <details class="faq-item">
             <summary>{{ faq.q }}</summary>
@@ -58,16 +60,17 @@
   </div>
 </section>
 
-<section class="container pb-5">
-  <div class="section-head">
-    <h2>Media din lucrari similare</h2>
+<section class="container pb-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <h2 data-luxury-reveal>Media din lucrari similare</h2>
   </div>
   <div class="grid-gallery">
     {% for item in related_media %}
       {% include 'partials/_gallery_card.html' with item=item %}
     {% empty %}
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-2.jpeg" alt="{{ service.name }}" class="card-media" /></figure>
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ service.name }}" class="card-media" /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-2.jpeg" alt="{{ service.name }}" class="card-media" data-webgl-media /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ service.name }}" class="card-media" data-webgl-media /></figure>
     {% endfor %}
   </div>
 </section>

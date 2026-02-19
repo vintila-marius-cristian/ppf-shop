@@ -4,13 +4,14 @@
 {% block meta_description %}Galerie foto-video cu lucrari PPF, ceramic coating, tint si detailing realizate in atelierul nostru din Pitesti.{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <div class="section-head">
-    <p class="caps">Galerie</p>
-    <h1>Proiecte reale din atelier</h1>
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Galerie</p>
+    <h1 data-luxury-reveal>Proiecte reale din atelier</h1>
   </div>
 
-  <form method="get" class="glass-card p-3 mb-4 d-flex flex-wrap gap-2 align-items-center">
+  <form method="get" class="glass-card p-3 mb-4 d-flex flex-wrap gap-2 align-items-center" data-luxury-reveal>
     <label for="serviceFilter" class="mb-0">Filtru serviciu:</label>
     <select id="serviceFilter" name="service" class="form-select w-auto" onchange="this.form.submit()">
       <option value="">Toate</option>
@@ -24,8 +25,8 @@
     {% for item in gallery_items %}
       {% include 'partials/_gallery_card.html' with item=item %}
     {% empty %}
-      <figure class="glass-card gallery-card"><img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="Galerie Premiere Aesthetics" class="card-media" /></figure>
-      <figure class="glass-card gallery-card"><video controls class="card-media"><source src="{{ MEDIA_URL }}client/video-2.mp4" type="video/mp4" /></video></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><img src="{{ MEDIA_URL }}client/image-1.jpeg" alt="Galerie Premiere Aesthetics" class="card-media" data-webgl-media /></figure>
+      <figure class="glass-card gallery-card" data-luxury-reveal><video controls class="card-media"><source src="{{ MEDIA_URL }}client/video-2.mp4" type="video/mp4" /></video></figure>
     {% endfor %}
   </div>
 

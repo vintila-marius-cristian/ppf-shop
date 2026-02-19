@@ -4,24 +4,25 @@
 {% block meta_description %}Contacteaza atelierul Premiere Aesthetics pentru PPF, ceramic coating, window tinting si detailing in Pitesti.{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-  <div class="section-head">
-    <p class="caps">Contact</p>
-    <h1>Programare Folie PPF Pitesti</h1>
+<section class="container py-5 mt-5 editorial-chapter" data-chapter data-chapter-effect="rule-draw">
+  <span class="chapter-rule" aria-hidden="true"></span>
+  <div class="section-head" data-luxury-reveal>
+    <p class="caps" data-luxury-reveal>Contact</p>
+    <h1 data-luxury-reveal>Programare Folie PPF Pitesti</h1>
   </div>
 
   <div class="row g-4">
     <div class="col-lg-7">
       {% include 'partials/_contact_form.html' with form=form %}
-      <div class="glass-card p-3 mt-4">
-        <h3 class="h5">Date de contact</h3>
+      <div class="glass-card p-3 mt-4" data-luxury-reveal>
+        <h3 class="h5" data-luxury-reveal>Date de contact</h3>
         <p class="mb-1">Telefon: <a href="tel:{{ business.phone }}">{{ business.phone }}</a></p>
         <p class="mb-1">Email: <a href="mailto:{{ business.email }}">{{ business.email }}</a></p>
         <p class="mb-1">Adresa: {{ business.street }}, {{ business.city }}</p>
         <p class="mb-0">Program: {{ business.hours }}</p>
       </div>
-      <div class="glass-card p-3 mt-4">
-        <h3 class="h5">Locatie</h3>
+      <div class="glass-card p-3 mt-4" data-luxury-reveal>
+        <h3 class="h5" data-luxury-reveal>Locatie</h3>
         <div class="ratio ratio-16x9">
           <iframe src="{{ business.maps_embed }}" loading="lazy" title="Locatie Premiere Aesthetics" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>

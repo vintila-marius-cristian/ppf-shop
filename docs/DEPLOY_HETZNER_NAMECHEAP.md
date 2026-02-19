@@ -63,6 +63,7 @@ Edit `.env` (must set):
 - `DJANGO_SECURE_SSL=True`
 - `OWNER_DASH_USERNAME=<your-dashboard-username>`
 - `OWNER_DASH_PASSWORD=<strong-dashboard-password>`
+- `DASH_URL_BASE_PATHNAME=/dashboard/`
 - `DASHBOARD_BIND=127.0.0.1:8050:8050` (keeps analytics private on server localhost)
 
 ## 4) Start production stack
@@ -93,13 +94,9 @@ docker compose -f docker-compose.prod.yml exec web python manage.py bootstrap_si
 - Django admin is intentionally not exposed (`/admin/` should return 404).
 
 Access analytics dashboard (private, separate app):
-1. From your local machine, open an SSH tunnel:
-   ```bash
-   ssh -L 8050:127.0.0.1:8050 root@<YOUR_HETZNER_SERVER_IP>
-   ```
-2. Open:
-   - http://127.0.0.1:8050
-3. Authenticate with:
+1. Open:
+   - https://ppf.schrodingercat.art/dashboard/
+2. Authenticate with:
    - `OWNER_DASH_USERNAME`
    - `OWNER_DASH_PASSWORD`
 
