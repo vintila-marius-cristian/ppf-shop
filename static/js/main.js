@@ -98,7 +98,10 @@
       const mediaTitle = button.dataset.galleryTitle || "";
       const mediaCaption = button.dataset.galleryCaption || "";
 
-      if (previewTitle) previewTitle.textContent = mediaTitle;
+      if (previewTitle) {
+        previewTitle.textContent = mediaTitle;
+        previewTitle.hidden = !mediaTitle.trim();
+      }
       if (previewCaption) previewCaption.textContent = mediaCaption;
 
       if (mediaType === "video") {

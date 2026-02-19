@@ -91,7 +91,7 @@ export class ScrollChapters {
     if (effect === "rule-draw" && rule) {
       window.gsap.to(rule, {
         scaleX: 1,
-        duration: 0.92,
+        duration: 1.12,
         ease: EASING.smoothOut,
         scrollTrigger: {
           trigger: chapter,
@@ -105,7 +105,7 @@ export class ScrollChapters {
       window.gsap.to(corner, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.72,
+        duration: 0.88,
         ease: EASING.softOut,
         scrollTrigger: {
           trigger: chapter,

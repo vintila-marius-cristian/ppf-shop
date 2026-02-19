@@ -33,7 +33,6 @@ def normalize_base_path(path_value: str) -> str:
 
 DASH_BASE_PATH = normalize_base_path(DASH_URL_BASE_PATHNAME)
 
-
 def load_events_df() -> pd.DataFrame:
     query = text(
         """
@@ -55,11 +54,7 @@ def load_events_df() -> pd.DataFrame:
     return df
 
 
-app = Dash(
-    __name__,
-    requests_pathname_prefix=DASH_BASE_PATH,
-    routes_pathname_prefix=DASH_BASE_PATH,
-)
+app = Dash(__name__, url_base_pathname=DASH_BASE_PATH)
 app.title = "Premiere Aesthetics Analytics"
 
 

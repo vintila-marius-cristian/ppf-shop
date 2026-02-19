@@ -159,7 +159,7 @@ export class TransitionOverlay {
         },
       })
       .set(this.overlay, { pointerEvents: "auto" })
-      .to(this.overlay, { autoAlpha: 1, filter: "blur(0px)", duration: 0.34 }, 0)
+      .to(this.overlay, { autoAlpha: 1, filter: "blur(0px)", duration: TIMING.micro.fast }, 0)
       .to(this.line, { scaleX: 1, duration: TIMING.transition.reveal, ease: EASING.smoothOut }, 0.06)
       .to(this.accent, { xPercent: 115, duration: TIMING.transition.enter, ease: EASING.softInOut }, 0.1);
   }
@@ -177,12 +177,12 @@ export class TransitionOverlay {
 
     window.gsap
       .timeline({ defaults: { ease: EASING.softOut } })
-      .fromTo(this.loaderLogo, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.42 })
+      .fromTo(this.loaderLogo, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: TIMING.micro.fast })
       .fromTo(this.loaderLine, { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: TIMING.loader.line, ease: EASING.smoothOut }, 0.08)
       .to(this.loader, {
         autoAlpha: 0,
-        duration: 0.32,
-        delay: 0.08,
+        duration: 0.4,
+        delay: 0.12,
         onComplete: () => {
           this.loader.remove();
         },

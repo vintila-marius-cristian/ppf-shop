@@ -51,7 +51,7 @@ export class HeroMotion {
         autoAlpha: 1,
         yPercent: 0,
         duration: TIMING.reveal.section,
-        stagger: 0.045,
+        stagger: 0.055,
       })
       .to(
         revealTargets,
@@ -59,21 +59,21 @@ export class HeroMotion {
           autoAlpha: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.96,
+          stagger: 0.12,
         },
-        0.14,
+        0.2,
       )
       .to(
         ctas,
         {
           autoAlpha: 1,
           y: 0,
-          duration: 0.66,
-          stagger: 0.1,
+          duration: 0.82,
+          stagger: 0.12,
           ease: EASING.smoothOut,
         },
-        0.48,
+        0.62,
       );
   }
 

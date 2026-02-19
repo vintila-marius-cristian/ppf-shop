@@ -1,19 +1,19 @@
 export const TIMING = {
   loader: {
     total: 0.95,
-    line: 0.55,
+    line: 0.72,
   },
   transition: {
-    enter: 0.9,
-    reveal: 0.85,
+    enter: 1.12,
+    reveal: 1.04,
   },
   micro: {
-    fast: 0.42,
-    standard: 0.62,
+    fast: 0.52,
+    standard: 0.74,
   },
   reveal: {
-    section: 1.0,
-    stagger: 0.08,
+    section: 1.16,
+    stagger: 0.095,
   },
 };
 

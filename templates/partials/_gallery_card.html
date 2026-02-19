@@ -10,7 +10,6 @@
     <img src="{{ MEDIA_URL }}client/image-3.jpeg" alt="{{ item.title }}" class="card-media" loading="lazy" data-webgl-media />
   {% endif %}
   <figcaption class="card-body">
-    <h3 class="h6 mb-1" data-luxury-reveal>{{ item.title }}</h3>
     <p class="mb-0" data-luxury-reveal>{{ item.caption|default:item.description|truncatewords:18 }}</p>
     <button
       type="button"
@@ -18,7 +17,7 @@
       data-gallery-open
       data-gallery-type="{% if item.video %}video{% else %}image{% endif %}"
       data-gallery-src="{% if item.video %}{{ item.video.url }}{% elif item.image %}{{ item.image.url }}{% else %}{{ MEDIA_URL }}client/image-3.jpeg{% endif %}"
-      data-gallery-title="{{ item.title|escape }}"
+      data-gallery-title=""
       data-gallery-caption="{{ item.caption|default:item.description|escape }}">
       Vezi proiectul full
     </button>
