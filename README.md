@@ -38,7 +38,7 @@ Production-ready Django 4.x website for **schrodingercat.art** with a glassmorph
   - Custom tracking endpoint (`/api/track/`)
   - Client-side click/page/scroll tracking (`static/js/analytics.js`)
   - Dedicated analytics service proxied at `/dashboard/` in production
-  - HTTP Basic Auth on dashboard (`OWNER_DASH_USERNAME`/`OWNER_DASH_PASSWORD`)
+  - Private login form on dashboard (`OWNER_DASH_USERNAME`/`OWNER_DASH_PASSWORD`)
   - In production, container still binds localhost by default (`DASHBOARD_BIND=127.0.0.1:8050:8050`)
   - Dashboard widgets:
     - page views trend
@@ -114,8 +114,8 @@ Production-ready Django 4.x website for **schrodingercat.art** with a glassmorph
    docker compose exec web python manage.py bootstrap_site
    ```
 5. Open services:
-   - Website: `http://localhost`
-   - Analytics dashboard (basic auth): `http://localhost:8050`
+  - Website: `http://localhost`
+  - Analytics dashboard (login form): `http://localhost:8050`
 
 Containers provided:
 - `web` (Django + Gunicorn)
@@ -164,6 +164,7 @@ Critical values:
 - `CONTACT_EMAIL`
 - `PLAUSIBLE_DOMAIN` or `MATOMO_URL` + `MATOMO_SITE_ID`
 - `OWNER_DASH_USERNAME` and `OWNER_DASH_PASSWORD`
+- `DASH_SESSION_SECRET`
 - `DASH_URL_BASE_PATHNAME` (production default: `/dashboard/`)
 - `DASHBOARD_BIND` (production default: `127.0.0.1:8050:8050`)
 - `FACEBOOK_PAGE_URL`, `INSTAGRAM_PROFILE_URL`, and optional `INSTAGRAM_EMBEDS`
