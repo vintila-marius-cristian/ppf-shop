@@ -33,6 +33,13 @@ def normalize_base_path(path_value: str) -> str:
 
 DASH_BASE_PATH = normalize_base_path(DASH_URL_BASE_PATHNAME)
 
+# Make routing deterministic even if Dash pathname env vars are present.
+# We read DASH_URL_BASE_PATHNAME once, then clear dash path env vars to avoid
+# constructor ambiguity in newer Dash versions.
+os.environ.pop("DASH_URL_BASE_PATHNAME", None)
+os.environ.pop("DASH_REQUESTS_PATHNAME_PREFIX", None)
+os.environ.pop("DASH_ROUTES_PATHNAME_PREFIX", None)
+
 def load_events_df() -> pd.DataFrame:
     query = text(
         """
@@ -54,7 +61,11 @@ def load_events_df() -> pd.DataFrame:
     return df
 
 
-app = Dash(__name__, url_base_pathname=DASH_BASE_PATH)
+app = Dash(
+    __name__,
+    requests_pathname_prefix=DASH_BASE_PATH,
+    routes_pathname_prefix=DASH_BASE_PATH,
+)
 app.title = "Premiere Aesthetics Analytics"
 
 
