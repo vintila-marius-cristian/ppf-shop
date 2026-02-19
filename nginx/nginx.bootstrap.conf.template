@@ -4,7 +4,7 @@ upstream django_app {
 
 server {
     listen 80;
-    server_name ppf.schrodingercat.art www.ppf.schrodingercat.art;
+    server_name __SERVER_NAMES__;
 
     client_max_body_size 30M;
 

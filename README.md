@@ -119,8 +119,12 @@ Containers provided:
    ```
 3. Bootstrap HTTPS certificates (Let's Encrypt):
    ```bash
-   ./deploy/bootstrap_https.sh schrodingercat.art premiereaesthetics@gmail.com
+   ./deploy/bootstrap_https.sh ppf.schrodingercat.art premiereaesthetics@gmail.com auto
    ```
+   Third argument values:
+   - `auto` (default): include `www.<domain>` only if DNS exists
+   - `true`: force include `www.<domain>`
+   - `false`: issue only for the provided domain
 4. Configure renewal (cron example):
    ```cron
    0 3 * * * cd /path/to/repo && ./deploy/renew_certs.sh

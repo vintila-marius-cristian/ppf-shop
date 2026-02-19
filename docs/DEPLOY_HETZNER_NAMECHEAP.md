@@ -1,4 +1,4 @@
-# Hetzner + Namecheap Deployment Guide (`schrodingercat.art`)
+# Hetzner + Namecheap Deployment Guide
 
 This guide deploys the Dockerized stack (`web`, `db`, `dashboard`, `nginx`) on a Hetzner Ubuntu server with HTTPS via Let's Encrypt.
 
@@ -74,8 +74,12 @@ cd /opt/schrodingercat/app
 ## 5) Issue SSL certificate and switch nginx to TLS config
 ```bash
 cd /opt/schrodingercat/app
-./deploy/bootstrap_https.sh schrodingercat.art premiereaesthetics@gmail.com
+./deploy/bootstrap_https.sh ppf.schrodingercat.art premiereaesthetics@gmail.com auto
 ```
+Third argument values:
+- `auto` (default): include `www.<domain>` only if DNS resolves
+- `true`: force include `www.<domain>`
+- `false`: issue only for the provided domain
 
 ## 6) Load initial content
 ```bash
@@ -84,8 +88,8 @@ docker compose -f docker-compose.prod.yml exec web python manage.py bootstrap_si
 ```
 
 ## 7) Verify
-- https://schrodingercat.art
-- https://www.schrodingercat.art
+- https://ppf.schrodingercat.art
+- https://www.ppf.schrodingercat.art (only if DNS exists and certificate includes `www`)
 - Django admin is intentionally not exposed (`/admin/` should return 404).
 
 Access analytics dashboard (private, separate app):
